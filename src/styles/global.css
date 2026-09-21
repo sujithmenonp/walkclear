@@ -13,7 +13,7 @@ header.site { border-bottom: 1px solid var(--line); }
 header.site .wrap { display: flex; justify-content: space-between; align-items: center; padding-block: 1rem; }
 header.site .brand { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: var(--fg); }
 header.site nav a { margin-left: 1.2rem; text-decoration: none; }
-main { padding-block: 2rem 4rem; }
+
 footer.site { border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; padding-block: 2rem; }
 h1, h2, h3 { line-height: 1.25; }
 pre { background: var(--code); padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: .9rem; }
@@ -36,3 +36,26 @@ th, td { border: 1px solid var(--line); padding: .4rem .6rem; text-align: left; 
 .subscribe input[type=email] { flex: 1; min-width: 12rem; padding: .5rem .7rem; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
 .subscribe button { padding: .5rem 1rem; font: inherit; border: 0; border-radius: 6px; background: var(--accent); color: var(--bg); cursor: pointer; }
 .changelog { border-left: 3px solid var(--line); padding-left: 1rem; color: var(--muted); }
+
+/* Layout with sidebar */
+.layout { max-width: 68rem; margin: 0 auto; padding: 0 1rem; display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; }
+main { padding-block: 2rem 4rem; min-width: 0; max-width: 44rem; }
+.sidebar { padding-block: 2rem; font-size: .92rem; }
+.sidebar-inner { position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; }
+.sidebar summary { display: none; font-weight: 600; cursor: pointer; }
+.side-title { text-transform: uppercase; letter-spacing: .05em; font-size: .72rem; color: var(--muted); margin: 1.2rem 0 .3rem; }
+.side-group:first-of-type .side-title { margin-top: 0; }
+.sidebar ul { list-style: none; margin: 0; padding: 0; }
+.sidebar li a { display: block; padding: .2rem .5rem; margin-left: -.5rem; border-radius: 6px; text-decoration: none; color: var(--fg); line-height: 1.4; }
+.sidebar li a:hover { background: var(--code); }
+.sidebar li a[aria-current='page'] { background: var(--code); color: var(--accent); font-weight: 600; }
+.diff { font-size: .68rem; margin-left: .4rem; padding: 0 .4rem; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+.diff.easy { color: #2f855a; } .diff.medium { color: #b7791f; } .diff.hard { color: #c53030; }
+h2.group { margin-top: 2rem; }
+@media (max-width: 900px) {
+	.layout { display: block; }
+	.sidebar { padding-block: 1rem 0; border-bottom: 1px solid var(--line); }
+	.sidebar summary { display: block; }
+	.sidebar-inner { position: static; max-height: none; }
+	main { padding-top: 1.5rem; }
+}

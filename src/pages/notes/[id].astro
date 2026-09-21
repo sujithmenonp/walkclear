@@ -1,5 +1,6 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
+import { getVisibleNotes } from '../../lib/notes';
 import Base from '../../layouts/Base.astro';
 import YouTube from '../../components/YouTube.astro';
 
@@ -9,16 +10,19 @@ export async function getStaticPaths() {
 }
 const { note } = Astro.props;
 const { Content } = await render(note);
-const { title, summary, status, tags, updated, published, video, premium, related, hidden } = note.data;
+const { title, summary, status, tags, updated, published, video, premium, related, hidden, type, difficulty } = note.data;
 const relatedNotes = (await Promise.all(related.map((id: string) => getEntry('notes', id)))).filter(Boolean);
+// Backlinks: visible notes that list this one in their `related`, minus ones already linked above.
+const usedIn = (await getVisibleNotes()).filter((n) => n.data.related.includes(note.id) && !related.includes(n.id));
+const forwardLabel = type === 'problem' ? 'Concepts used' : 'Related';
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 ---
 <Base {title} description={summary}>
 	{hidden && <meta name="robots" content="noindex" slot="head" />}
-	<article>
+	<article data-pagefind-body>
 		<h1>{title}</h1>
 		<div class="meta">
-			<span class={`status ${status}`}>{status}</span>{premium && <span class="status">premium</span>}
+			{difficulty && <span class={`diff ${difficulty}`} style="margin-left:0;margin-right:.3rem">{difficulty}</span>}<span class={`status ${status}`}>{status}</span>{premium && <span class="status">premium</span>}
 			Published {fmt(published)}{updated && ` · Last updated ${fmt(updated)}`}
 		</div>
 		<div>{tags.map((t: string) => <a class="tag" href={`/tags/${t}`}>{t}</a>)}</div>
@@ -26,8 +30,14 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month:
 		<Content />
 		{relatedNotes.length > 0 && (
 			<>
-				<h2>Related</h2>
+				<h2>{forwardLabel}</h2>
 				<ul>{relatedNotes.map((r: any) => <li><a href={`/notes/${r.id}`}>{r.data.title}</a></li>)}</ul>
+			</>
+		)}
+		{usedIn.length > 0 && (
+			<>
+				<h2>{type === 'concept' ? 'Used in' : 'Also referenced by'}</h2>
+				<ul>{usedIn.map((r) => <li><a href={`/notes/${r.id}`}>{r.data.title}</a></li>)}</ul>
 			</>
 		)}
 	</article>

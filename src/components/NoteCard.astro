@@ -1,11 +1,11 @@
 ---
 const { note } = Astro.props;
-const { title, summary, status, tags, premium, updated, published } = note.data;
+const { title, summary, status, tags, premium, updated, published, difficulty } = note.data;
 const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
 ---
 <a class="card" href={`/notes/${note.id}`}>
 	<h3>{title}</h3>
-	<div><span class={`status ${status}`}>{status}</span>{premium && <span class="status">premium</span>}{tags.map((t: string) => <span class="tag">{t}</span>)}</div>
+	<div>{difficulty && <span class={`diff ${difficulty}`} style="margin-left:0;margin-right:.3rem">{difficulty}</span>}<span class={`status ${status}`}>{status}</span>{premium && <span class="status">premium</span>}{tags.map((t: string) => <span class="tag">{t}</span>)}</div>
 	<p>{summary}</p>
 	<div class="meta">{updated ? `Updated ${fmt(updated)}` : fmt(published)}</div>
 </a>

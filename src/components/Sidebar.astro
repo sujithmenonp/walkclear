@@ -1,0 +1,31 @@
+---
+import { groups, getNotesByType } from '../lib/notes';
+const current = Astro.url.pathname.replace(/\/$/, '');
+const sections = await Promise.all(groups.map(async (g) => ({ ...g, notes: await getNotesByType(g.type) })));
+---
+<aside class="sidebar">
+	<details open class="sidebar-inner">
+		<summary>Browse</summary>
+		{sections.filter((s) => s.notes.length > 0).map((s) => (
+			<div class="side-group">
+				<div class="side-title">{s.label}</div>
+				<ul>
+					{s.notes.map((n) => (
+						<li>
+							<a href={`/notes/${n.id}`} aria-current={current === `/notes/${n.id}` ? 'page' : undefined}>
+								{n.data.title}
+								{n.data.difficulty && <span class={`diff ${n.data.difficulty}`}>{n.data.difficulty}</span>}
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		))}
+	</details>
+</aside>
+<script>
+	// Collapse the browse list by default on small screens.
+	if (window.matchMedia('(max-width: 900px)').matches) {
+		document.querySelector('.sidebar-inner')?.removeAttribute('open');
+	}
+</script>

@@ -1,14 +1,20 @@
 ---
-import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import NoteCard from '../../components/NoteCard.astro';
-const notes = (await getCollection('notes', (n) => !n.data.hidden)).sort(
-	(a, b) => (b.data.updated ?? b.data.published).valueOf() - (a.data.updated ?? a.data.published).valueOf(),
-);
+import { groups, getVisibleNotes } from '../../lib/notes';
+const notes = await getVisibleNotes();
 const tags = [...new Set(notes.flatMap((n) => n.data.tags))].sort();
 ---
 <Base title="Notes">
 	<h1>Notes</h1>
 	<p>{tags.map((t) => <a class="tag" href={`/tags/${t}`}>{t}</a>)}</p>
-	{notes.map((note) => <NoteCard {note} />)}
+	{groups.map((g) => {
+		const items = notes.filter((n) => n.data.type === g.type);
+		return items.length > 0 && (
+			<>
+				<h2 class="group">{g.label}</h2>
+				{items.map((note) => <NoteCard {note} />)}
+			</>
+		);
+	})}
 </Base>

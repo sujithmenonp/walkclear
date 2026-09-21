@@ -1,10 +1,8 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
+import { getVisibleNotes } from '../lib/notes';
 
 export async function GET(context) {
-	const notes = (await getCollection('notes', (n) => !n.data.hidden)).sort(
-		(a, b) => (b.data.updated ?? b.data.published).valueOf() - (a.data.updated ?? a.data.published).valueOf(),
-	);
+	const notes = await getVisibleNotes();
 	return rss({
 		title: 'walkclear',
 		description: 'Notes on system design, written while I learn it.',
