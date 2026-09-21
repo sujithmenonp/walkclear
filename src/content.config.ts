@@ -6,13 +6,15 @@ const notes = defineCollection({
 	loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/notes' }),
 	schema: z.object({
 		title: z.string(),
+		type: z.enum(['concept', 'problem', 'tech']).default('concept'),
+		difficulty: z.enum(['easy', 'medium', 'hard']).optional(), // problems only
 		summary: z.string(),
 		published: z.coerce.date(),
 		updated: z.coerce.date().optional(),
 		// draft = rough first pass, growing = actively adding to it, solid = I'd stand behind it
 		status: z.enum(['draft', 'growing', 'solid']).default('draft'),
 		tags: z.array(z.string()).default([]),
-		related: z.array(z.string()).default([]), // ids of other notes
+		related: z.array(z.string()).default([]), // ids of other notes; on a problem, these are the concepts it uses
 		video: z.string().optional(), // YouTube video id
 		premium: z.boolean().default(false), // not enforced yet; reserved for future gating
 		hidden: z.boolean().default(false), // set true to keep a WIP out of listings and the feed

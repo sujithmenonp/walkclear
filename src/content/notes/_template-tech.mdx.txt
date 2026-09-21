@@ -1,0 +1,27 @@
+---
+title: "Technology name"
+type: tech
+summary: "What it is and what it's for, in one sentence."
+published: 2026-09-21
+status: draft
+tags: []
+related: []
+premium: false
+hidden: true
+---
+
+## What it is
+
+## When to pick it
+
+## Gotchas
+
+## Cheat sheet
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: First draft.
+
+</div>

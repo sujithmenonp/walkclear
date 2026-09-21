@@ -1,0 +1,50 @@
+---
+title: "Design X"
+type: problem
+difficulty: easy           # easy | medium | hard
+summary: "One sentence on what the system does."
+published: 2026-09-21
+# updated: 2026-09-28
+status: draft              # draft | growing | solid
+tags: []
+related: []                # concepts this design uses (file names of concept notes)
+# video: "YouTubeVideoId"
+premium: false
+hidden: true
+---
+
+## Understanding the problem
+
+## Requirements
+
+**Functional (in scope)**
+
+**Out of scope**
+
+**Non-functional** (scale, latency, availability, consistency)
+
+## Entities and API
+
+## High-level design
+
+## Deep dives
+
+### 1. First deep dive
+
+| Option | Pros | Cons | Pick when |
+|---|---|---|---|
+|  |  |  |  |
+
+## What's expected at each level
+
+- **Mid-level:**
+- **Senior:**
+- **Staff+:**
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: First draft.
+
+</div>

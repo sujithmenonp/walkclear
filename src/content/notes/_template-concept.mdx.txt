@@ -1,5 +1,6 @@
 ---
 title: "Concept name"
+type: concept
 summary: "One sentence on what this note explains."
 published: 2026-09-21
 # updated: 2026-09-28      # add/bump this whenever you extend the note
