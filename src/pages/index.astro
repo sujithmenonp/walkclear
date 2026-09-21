@@ -5,12 +5,6 @@ import NoteCard from '../components/NoteCard.astro';
 const notes = (await getVisibleNotes()).slice(0, 6);
 ---
 <Base>
-	<section class="hero">
-		<h1>Learning system design, <em>in the open.</em></h1>
-		<p class="lead">Notes, diagrams and walkthroughs as I work through system design. Every page is a living note: a rough explanation first, then more context as my understanding grows, mistakes included.</p>
-		<div class="cta"><a class="btn" href="/notes">Browse notes</a><a class="btn ghost" href="/about">About this site</a></div>
-	</section>
-	<h2 class="group">Recently updated</h2>
+	<h1>System design</h1>
 	{notes.map((note) => <NoteCard {note} />)}
-	<p><a href="/notes">All notes →</a></p>
 </Base>
