@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Search">
+	<h1>Search</h1>
+	<div id="search"></div>
+	<p class="meta" id="dev-note" hidden>Search index is built by <code>npm run build</code>. Run <code>npm run build &amp;&amp; npm run preview</code> to try it locally.</p>
+</Base>
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script is:inline src="/pagefind/pagefind-ui.js"></script>
+<script is:inline>
+	window.addEventListener('DOMContentLoaded', () => {
+		if (window.PagefindUI) {
+			new PagefindUI({ element: '#search', showSubResults: true, autofocus: true });
+		} else {
+			document.getElementById('dev-note').hidden = false;
+		}
+	});
+</script>
