@@ -1,0 +1,39 @@
+---
+title: "Load balancing"
+summary: "How traffic gets spread across servers, and the trade-offs between the common algorithms."
+published: 2026-09-21
+status: growing
+tags: [fundamentals, scaling]
+related: [consistent-hashing]
+premium: false
+---
+
+## TL;DR
+
+A load balancer sits in front of several servers and decides which one handles each request. It gives you more capacity and survives a server dying.
+
+## Common algorithms
+
+| Algorithm | Idea | Good when |
+|---|---|---|
+| Round robin | Rotate through servers | Requests cost about the same |
+| Least connections | Pick the least busy server | Requests vary in duration |
+| IP / key hash | Same client goes to the same server | You need stickiness or cache locality |
+
+## Layer 4 vs layer 7
+
+- **L4** balances on IP and port. It is fast and simple.
+- **L7** understands HTTP, so it can route by path, header or cookie, at more cost per request.
+
+## Open questions
+
+- How do health checks avoid flapping servers in and out?
+- What happens when the load balancer itself fails?
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: First draft covering algorithms and L4 vs L7.
+
+</div>

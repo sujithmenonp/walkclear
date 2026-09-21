@@ -1,0 +1,6 @@
+---
+const { id, title = 'Video' } = Astro.props;
+---
+<div class="video">
+	<iframe src={`https://www.youtube-nocookie.com/embed/${id}`} {title} loading="lazy" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+</div>

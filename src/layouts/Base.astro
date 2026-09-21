@@ -1,0 +1,34 @@
+---
+import '../styles/global.css';
+import Analytics from '../components/Analytics.astro';
+import Subscribe from '../components/Subscribe.astro';
+const { title, description = 'Notes on system design, written while I learn it.' } = Astro.props;
+const pageTitle = title ? `${title} · walkclear` : 'walkclear';
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="alternate" type="application/rss+xml" title="walkclear" href="/rss.xml" />
+		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+		<Analytics />
+		<slot name="head" />
+	</head>
+	<body>
+		<header class="site">
+			<div class="wrap">
+				<a class="brand" href="/">walkclear</a>
+				<nav><a href="/notes">Notes</a><a href="/about">About</a><a href="/rss.xml">RSS</a></nav>
+			</div>
+		</header>
+		<main class="wrap">
+			<slot />
+			<Subscribe />
+		</main>
+		<footer class="site"><div class="wrap">© {new Date().getFullYear()} walkclear.com · learning system design in public</div></footer>
+	</body>
+</html>

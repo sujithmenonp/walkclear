@@ -1,0 +1,24 @@
+---
+title: "Consistent hashing"
+summary: "A way to spread keys across nodes so adding or removing a node moves only a small share of keys."
+published: 2026-09-21
+status: draft
+tags: [fundamentals, sharding]
+related: [load-balancing]
+---
+
+## TL;DR
+
+With `hash(key) % N`, changing N remaps almost every key. Consistent hashing places nodes and keys on a ring, and each key belongs to the next node clockwise. Adding or removing a node only affects its neighbours.
+
+## Open questions
+
+- How many virtual nodes are enough to even out the load?
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: Stub. Expand with the ring diagram and virtual nodes.
+
+</div>

@@ -1,0 +1,30 @@
+---
+title: "Concept name"
+summary: "One sentence on what this note explains."
+published: 2026-09-21
+# updated: 2026-09-28      # add/bump this whenever you extend the note
+status: draft              # draft | growing | solid
+tags: []
+related: []                # ids (file names) of other notes
+# video: "YouTubeVideoId"
+premium: false             # reserved for future gating
+hidden: false              # true = keep out of listings and RSS while it's rough
+---
+
+## TL;DR
+
+## The problem it solves
+
+## How it works
+
+## Trade-offs
+
+## Open questions
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: First draft.
+
+</div>

@@ -1,0 +1,15 @@
+---
+// Placeholder. When ready, create a Buttondown (or similar) account and set the
+// action URL below to your form endpoint, e.g. https://buttondown.com/api/emails/embed-subscribe/<username>
+const action = import.meta.env.PUBLIC_SUBSCRIBE_URL;
+---
+{action && (
+	<section class="subscribe">
+		<strong>Follow along</strong>
+		<p class="meta">New notes and updates by email. No spam.</p>
+		<form method="post" {action} target="_blank">
+			<input type="email" name="email" placeholder="you@example.com" required aria-label="Email address" />
+			<button type="submit">Subscribe</button>
+		</form>
+	</section>
+)}

@@ -1,0 +1,15 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import NoteCard from '../components/NoteCard.astro';
+const notes = (await getCollection('notes', (n) => !n.data.hidden))
+	.sort((a, b) => (b.data.updated ?? b.data.published).valueOf() - (a.data.updated ?? a.data.published).valueOf())
+	.slice(0, 6);
+---
+<Base>
+	<h1>Learning system design, in the open.</h1>
+	<p>Notes, diagrams and walkthroughs as I work through system design. Pages are living notes: I start with a rough explanation and keep adding context as I understand more.</p>
+	<h2>Recently updated</h2>
+	{notes.map((note) => <NoteCard {note} />)}
+	<p><a href="/notes">All notes →</a></p>
+</Base>
