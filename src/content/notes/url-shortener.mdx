@@ -1,0 +1,89 @@
+---
+title: "Design a URL shortener"
+type: problem
+difficulty: easy
+summary: "Turn long URLs into short links and redirect visitors quickly, at scale."
+published: 2026-09-21
+status: draft
+tags: [interview, storage, caching]
+related: [load-balancing, consistent-hashing]   # add concept notes as you write them: caching, sharding, ...
+premium: false
+hidden: true   # flip to false when you're ready to publish
+---
+
+{/* Prompts in italics are for you: answer them in your own words, then delete the prompt. */}
+
+## Understanding the problem
+
+*In two or three sentences: what does a URL shortener do, and who uses it? Give one real example.*
+
+## Requirements
+
+**Functional (in scope)**
+
+*What are the 2 or 3 things a user must be able to do? (Hint: create, and...?)*
+
+**Out of scope**
+
+*Which features will you deliberately skip and say so? (custom aliases, analytics, expiry, accounts...)*
+
+**Non-functional**
+
+*Put numbers on these: how many new links per day? How many redirects per day? What redirect latency is acceptable? Is availability or consistency more important here, and why?*
+
+## Entities and API
+
+*What are the core entities? Sketch the fields of each.*
+
+*Write the API for each functional requirement: method, path, request, response.*
+
+```http
+POST /urls
+GET /{code}
+```
+
+## High-level design
+
+*Start with the simplest design that meets the functional requirements. Draw it, then walk through one create request and one redirect request.*
+
+*Question to answer: should the redirect be a 301 or a 302? What changes for you?*
+
+## Deep dives
+
+### 1. Generating short codes
+
+*How do you produce a unique short code? Fill in the options you know and what breaks at scale.*
+
+| Option | Pros | Cons | Pick when |
+|---|---|---|---|
+| Hash the URL and truncate |  |  |  |
+| Random string + uniqueness check |  |  |  |
+| Counter + base62 |  |  |  |
+
+*How long must the code be for your scale? Show the maths.*
+
+### 2. Making redirects fast
+
+*Reads far outnumber writes. What do you add to keep redirects quick, and what do you have to think about when data changes?*
+
+### 3. Scaling storage and traffic
+
+*How much data is this after a few years? When does one database stop being enough, and how would you split it? Where do the load balancer and consistent hashing fit in?*
+
+## What's expected at each level
+
+- **Mid-level:** *what must they cover?*
+- **Senior:** *what extra depth do you expect?*
+- **Staff+:** *what would set them apart?*
+
+## What I got wrong
+
+*Fill this in after you compare your design with other write-ups. Mistakes here are the most useful part of the page.*
+
+## Changelog
+
+<div class="changelog">
+
+- 2026-09-21: Skeleton created.
+
+</div>
