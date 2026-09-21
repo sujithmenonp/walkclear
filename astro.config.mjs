@@ -4,6 +4,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-	site: 'https://walkclear.com',
+	site: 'https://www.walkclear.com',
 	integrations: [mdx(), sitemap()],
 });
