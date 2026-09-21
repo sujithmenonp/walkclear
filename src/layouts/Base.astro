@@ -16,13 +16,16 @@ const pageTitle = title ? `${title} · walkclear` : 'walkclear';
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="alternate" type="application/rss+xml" title="walkclear" href="/rss.xml" />
 		<link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 		<Analytics />
 		<slot name="head" />
 	</head>
 	<body>
 		<header class="site">
 			<div class="wrap">
-				<a class="brand" href="/">walkclear</a>
+				<a class="brand" href="/"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#0d9488"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#g)"/><path d="M6 20c4-8 7-8 10 0s6 8 10 0" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>walkclear</a>
 				<nav><a href="/notes">Notes</a><a href="/search" title="Search (Ctrl/Cmd+K)">Search</a><a href="/about">About</a><a href="/rss.xml">RSS</a></nav>
 			</div>
 		</header>
